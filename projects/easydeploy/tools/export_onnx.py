@@ -100,6 +100,10 @@ def main():
         args.model_only = True
         print_log(f'Can not export postprocess for {args.backend.lower()}.\n'
                   f'Set "args.model_only=True" default.')
+    if args.agnostic_nms and backend != MMYOLOBackend.TENSORRT8:
+        print_log(f'AgnosticNMS only supports TENSORRT8 backend.\n'
+                  f'Change your backend from current {args.backend.lower()} to TENSORRT8.')
+        sys.exit(0)
     if args.model_only:
         postprocess_cfg = None
         output_names = None
