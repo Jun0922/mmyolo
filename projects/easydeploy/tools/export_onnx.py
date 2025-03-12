@@ -52,10 +52,10 @@ def parse_args():
         default='onnxruntime',
         help='Backend for export onnx')
     parser.add_argument(
-        '--agnostic-nms', 
-        action='store_true', 
+        '--agnostic-nms',
+        action='store_true',
         help='Switch NMS algorithm to agnostic_nms. ' +
-        'This only works with backend mode with TENSORRT8, ' + 
+        'This only works with backend mode with TENSORRT8, ' +
         'and with TensorRT 8.6 runtime or over.')
     parser.add_argument(
         '--pre-topk',
@@ -102,7 +102,8 @@ def main():
                   f'Set "args.model_only=True" default.')
     if args.agnostic_nms and backend != MMYOLOBackend.TENSORRT8:
         print_log(f'AgnosticNMS only supports TENSORRT8 backend.\n'
-                  f'Change your backend from current {args.backend.lower()} to TENSORRT8.')
+                  'Change your backend from current '
+                  f'{args.backend.lower()} to TENSORRT8.')
         sys.exit(0)
     if args.model_only:
         postprocess_cfg = None

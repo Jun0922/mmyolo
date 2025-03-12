@@ -153,7 +153,7 @@ class DeployModel(nn.Module):
         elif self.backend == MMYOLOBackend.TENSORRT8:
             if self.agnostic_nms:
                 nms_func = agnostic_nms
-            else:    
+            else:
                 nms_func = efficient_nms
         elif self.backend == MMYOLOBackend.TENSORRT7:
             nms_func = batched_nms

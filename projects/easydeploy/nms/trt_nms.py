@@ -217,6 +217,7 @@ def _batched_nms(
 
 
 class TRTAgnosticNMSop(torch.autograd.Function):
+
     @staticmethod
     def forward(
         ctx,
@@ -238,6 +239,7 @@ class TRTAgnosticNMSop(torch.autograd.Function):
         det_classes = torch.randint(
             0, num_classes, (batch_size, max_output_boxes), dtype=torch.int32)
         return num_det, det_boxes, det_scores, det_classes
+
     @staticmethod
     def symbolic(g,
                  boxes: Tensor,
