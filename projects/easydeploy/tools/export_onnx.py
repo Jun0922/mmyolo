@@ -52,6 +52,12 @@ def parse_args():
         default='onnxruntime',
         help='Backend for export onnx')
     parser.add_argument(
+        '--agnostic-nms', 
+        action='store_true', 
+        help='Switch NMS algorithm to agnostic_nms. ' +
+        'This only works with backend mode with TENSORRT8, ' + 
+        'and with TensorRT 8.6 runtime or over.')
+    parser.add_argument(
         '--pre-topk',
         type=int,
         default=1000,
@@ -99,6 +105,7 @@ def main():
         output_names = None
     else:
         postprocess_cfg = ConfigDict(
+            agnostic_nms=args.agnostic_nms,
             pre_top_k=args.pre_topk,
             keep_top_k=args.keep_topk,
             iou_threshold=args.iou_threshold,
